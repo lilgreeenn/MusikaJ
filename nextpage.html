@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map</title>
+    <link rel="stylesheet" href="nextpage.css">
+</head>
+<body>
+
+    <a href="index.html">
+        <img src="未命名作品 7.png" id="return-image" alt="Return to Index">
+    </a>
+
+    <audio id="button-sound" src="button-3.mp3"></audio>
+
+
+    <img src="image1.png" id="image1" class="draggable" alt="Image 1">
+    <img src="image2.png" id="image2" class="draggable" alt="Image 2">
+    <img src="image3.GIF" id="image3" class="draggable" alt="Image 3">
+    <img src="image4.png" id="image4" class="draggable" alt="Image 4">
+    <img src="image5.png" id="image5" class="draggable" alt="Image 5">
+
+    <script>
+        document.addEventListener("click", function() {
+            document.getElementById("button-sound").play();
+        });
+        
+        </script>
+
+    <script src="dragndrop.js"></script>
+
+
+</body>
+
+</html>

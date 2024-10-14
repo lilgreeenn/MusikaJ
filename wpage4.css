@@ -1,0 +1,245 @@
+body {
+    cursor: url('鼠标.png') 16 16, auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background: url('_\ \(1\).gif') no-repeat center center fixed;
+    background-size: cover;
+    
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+}
+
+.centered-title {
+    cursor: url('鼠标.png') 16 16, auto;
+    text-align: center;
+    font-size: 50px;
+    color: #ff0000;
+    text-shadow: 3px 3px #ffb006;
+    margin-top: 20px;
+}
+
+.return-button {
+    cursor: url('鼠标.png') 16 16, auto;
+    margin-top: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 10px 20px;
+    font-size: 25px;
+    background-color: #00e676;
+    border: 4px solid #000000;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+   
+}
+
+.return-button:hover {
+    cursor: url('鼠标.png') 16 16, auto;
+    background-color: #00c853;
+}
+
+.centered {
+    cursor: url('鼠标.png') 16 16, auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.artists-container {
+    cursor: url('鼠标.png') 16 16, auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    justify-items: center;
+    margin: 20px;
+}
+
+.artist-container-top {
+    cursor: url('鼠标.png') 16 16, auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px;
+    justify-items: center;
+    margin-bottom: 40px;
+}
+/* 
+.rank-number {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d32f2f;
+    position: absolute;
+    top: -10px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 50%;
+    padding: 5px 10px;
+} */
+
+
+.top1 {
+    cursor: url('鼠标.png') 16 16, auto;
+    grid-column: 2;
+    grid-row: 1;
+    transform: translateY(-30px); 
+}
+
+.top2 {
+    cursor: url('鼠标.png') 16 16, auto;
+    grid-column: 1;
+    grid-row: 1;
+    transform: translateY(10px); 
+}
+
+.top3 {
+    cursor: url('鼠标.png') 16 16, auto;
+    grid-column: 3;
+    grid-row: 1;
+    transform: translateY(10px); 
+}
+
+.artist-card {
+    cursor: url('鼠标.png') 16 16, auto;
+    border: 6px solid #000;
+    width: 200px;
+    margin: 5px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s;
+    background-image: url('fb514a48-d547-491b-9f29-35a2e6db620a.jpeg');
+    position: relative;
+   
+}
+
+
+.artist-card:hover {
+    cursor: url('鼠标.png') 16 16, auto;
+    border: 4px solid #000;
+    transform: scale(1.05);
+}
+
+.artist-cover {
+    cursor: url('鼠标.png') 16 16, auto;
+    border: 4px solid #000;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* .artist-card:nth-child(4n+1) {
+    background-color: #16e4ff;
+}
+
+.artist-card:nth-child(4n+2) {
+    background-color: #e628fb;
+}
+
+.artist-card:nth-child(4n+3) {
+    background-color: #0cf51f;
+}
+
+.artist-card:nth-child(4n+4) {
+    background-color: #ff9f04;
+} */
+
+.artist-ranking {
+    cursor: url('鼠标.png') 16 16, auto;
+   
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #d32f2f;
+    position: absolute;
+    top: -10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 70%;
+
+    padding: 5px 10px;
+}
+
+.artist-card:hover .artist-cover {
+    cursor: url('鼠标.png') 16 16, auto;
+    transform: rotate(360deg);
+}
+
+.artist-card.top1 .artist-ranking,
+.artist-card.top2 .artist-ranking,
+.artist-card.top3 .artist-ranking {
+    cursor: url('鼠标.png') 16 16, auto;
+    color: gold;
+    font-size: 30px;
+}
+
+
+.artist-card.top1{
+    cursor: url('鼠标.png') 16 16, auto;
+    background-image: url('e9942ba2-1acc-4d32-855f-a58b9c119c84.jpeg');
+
+}
+.artist-card.top2{
+    cursor: url('鼠标.png') 16 16, auto;
+    background-color: #92ff16;
+    background-image: url('Instead\ of\ the\ typical\ galaxy\ background\,\ to\ make….jpeg');
+}
+.artist-card.top3{
+    cursor: url('鼠标.png') 16 16, auto;
+    background-image: url('61062d90-20dd-4f19-a1e1-768798e01715.jpeg');
+}
+.artist-card.top1 h3{
+    cursor: url('鼠标.png') 16 16, auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #5700f8;
+    font-weight: bold;
+    
+}
+.artist-card.top2 h3{
+    cursor: url('鼠标.png') 16 16, auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #d81b86;
+    text-shadow: 2px 2px #000000;
+    font-weight: bold;
+}
+.artist-card.top3 h3 {
+    cursor: url('鼠标.png') 16 16, auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #d81b73;
+    font-weight: bold;
+    text-shadow: 2px 2px #000000;
+}
+
+
+
+.modal {
+    cursor: url('鼠标.png') 16 16, auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(187, 255, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+.modal-content {
+    cursor: url('鼠标.png') 16 16, auto;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+#corner-img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 270px; 
+    height: 270px;
+    z-index: 1000; 
+    cursor: url('鼠标.png') 16 16, auto;
+}

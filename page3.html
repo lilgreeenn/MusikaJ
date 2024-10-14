@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>poem</title>
+    <link rel="stylesheet" href="wpage3.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>现代诗生成器</h1>
+        <textarea id="inputWords" placeholder="请输入一些词语"></textarea>
+        
+        <input type="number" id="paragraphCount" value="1" min="1" max="5" placeholder="选择生成诗句的段数">
+        
+        <button onclick="generatePoem()">生成诗句</button>
+        
+        <div class="result">
+            <div id="poem" class="poem-box"></div>
+        </div>
+    
+        <div class="language-toggle">
+            <button id="language-btn" onclick="toggleLanguage()">中文</button>
+        </div>
+
+        
+        <div class="save-buttons">
+            <button onclick="saveAsText()">保存为文本</button>
+            <button onclick="saveAsImage()">保存为图片</button>
+        </div>
+    </div>
+
+    <audio id="button-sound" src="button-3.mp3"></audio>
+
+
+    <a href="nextpage.html">
+        <img src="未命名作品 8.png" id="corner-img" alt="Next Page">
+    </a>
+    
+
+    <script>
+        document.addEventListener("click", function() {
+            document.getElementById("button-sound").play();
+        });
+        
+        </script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0/dist/html2canvas.min.js"></script>
+
+    <script src="xpage3.js"></script>
+</body>
+</html>

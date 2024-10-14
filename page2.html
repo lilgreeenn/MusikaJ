@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timeline</title>
+    <link rel="stylesheet" href="wpage2.css">
+</head>
+<body>
+    <div class="timeline-container">
+        <div class="timeline"></div>
+    </div>
+
+    <div class="upload-section">
+        <h2>Live Infro </h2>
+        <form id="eventForm">
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" required>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="band">Name:</label>
+            <input type="text" id="band" name="band" required>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" placeholder="eg: Newyork" required>
+
+            <label for="venue">Place:</label>
+            <input type="text" id="venue" name="venue" placeholder="Eg: B10" required>
+
+            <label for="band-photo">band Photo:</label>
+            <input type="file" id="band-photo" accept="image/*" required>
+
+            <label for="live-photo">Live Pic(Option):</label>
+            <input type="file" id="live-photo" accept="image/*">
+
+            <div id="video-section">
+                <label for="video1-title">Video1（Song name）:</label>
+                <input type="text" id="video1-title" placeholder="Song name" required>
+                <input type="file" id="video1" accept="video/*" required>
+            </div>
+            <button type="button" id="add-video">Add more Video</button>
+
+            <button type="submit">upload</button>
+        </form>
+
+        <button id="download-json">Download JSON</button>
+        <input type="file" id="upload-json" accept=".json">
+        <button id="upload-json-button">Upload JSON</button>
+        
+    </div>
+
+    <audio id="button-sound" src="button-3.mp3"></audio>
+
+
+    <a href="nextpage.html">
+        <img src="未命名作品 11.png" id="corner-img" alt="Next Page">
+    </a>
+    
+
+    <script>
+        document.addEventListener("click", function() {
+            document.getElementById("button-sound").play();
+        });
+        
+        </script>
+
+    <h2>Statistics</h2>
+    <button id="generate-stats">Generating statistics</button>
+    <canvas id="yearChart" width="400" height="200"></canvas>
+    <canvas id="monthChart" width="400" height="200"></canvas>
+    <canvas id="cityChart" width="400" height="200"></canvas>
+    <canvas id="venueChart" width="400" height="200"></canvas>
+    <canvas id="bandChart" width="400" height="200"></canvas>
+    <canvas id="totalBandChart" width="400" height="200"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="xpage2.js"></script>
+</body>
+</html>

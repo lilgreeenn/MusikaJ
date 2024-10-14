@@ -1,0 +1,632 @@
+let currentLanguage = 'zh';
+
+const translations = {
+    zh: {
+        title: '现代诗生成器',
+        placeholder: '请输入一些词语',
+        paragraphCount: '选择生成诗句的段数',
+        generateBtn: '生成诗句',
+        saveTextBtn: '保存为文本',
+        saveImageBtn: '保存为图片'
+    },
+    en: {
+        title: 'Modern Poem Generator',
+        placeholder: 'Enter some words',
+        paragraphCount: 'Select number of paragraphs',
+        generateBtn: 'Generate Poem',
+        saveTextBtn: 'Save as Text',
+        saveImageBtn: 'Save as Image'
+    }
+};
+
+function toggleLanguage() {
+    currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+    document.getElementById('language-btn').innerText = currentLanguage === 'zh' ? '中文' : 'English';
+    updatePageLanguage();
+}
+
+function updatePageLanguage() {
+    document.querySelector('h1').innerText = translations[currentLanguage].title;
+    document.getElementById('inputWords').setAttribute('placeholder', translations[currentLanguage].placeholder);
+    document.getElementById('paragraphCount').setAttribute('placeholder', translations[currentLanguage].paragraphCount);
+    document.querySelector('button[onclick="generatePoem()"]').innerText = translations[currentLanguage].generateBtn;
+    document.querySelector('button[onclick="saveAsText()"]').innerText = translations[currentLanguage].saveTextBtn;
+    document.querySelector('button[onclick="saveAsImage()"]').innerText = translations[currentLanguage].saveImageBtn;
+}
+
+
+updatePageLanguage();
+
+
+function isChinese(text) {
+    return /[\u4e00-\u9fa5]/.test(text); 
+}
+
+
+function generatePoem() {
+    const input = document.getElementById('inputWords').value;
+    const words = input.split(',').map(word => word.trim()).filter(word => word.length > 0);
+    const paragraphCount = parseInt(document.getElementById('paragraphCount').value);
+
+    if (words.length === 0) {
+        alert(currentLanguage === 'zh' ? '请输入至少1个词语来生成诗句！' : 'Please enter at least one word to generate a poem!');
+        return;
+    }
+
+    
+    const language = isChinese(words[0]) ? 'zh' : 'en';
+    
+    const templates = {
+        zh: {
+            1: [
+                `${words[0]} 是我梦里的唯一景象。`,
+                `在黑夜中，\n${words[0]} 是唯一的光。`,
+                `${words[0]} 像一阵风，\n轻轻地拂过我的心。`,
+                `${words[0]} 是我梦中的幻象。`,
+                `${words[0]}，你是我唯一的思念。`,
+                `${words[0]} 像风一般，轻轻掠过。`,
+                `${words[0]}，像流星般消逝。`,
+                `${words[0]} 是我心底的秘密。`,
+                `${words[0]} 在时间的长河里，永不凋零。`,
+                `${words[0]} 静静地守候着。`,
+                `${words[0]} 如夜晚的星空般闪耀。`,
+                `${words[0]}，总是让我不安。`,
+                `${words[0]}，你是我的希望。`,
+                `${words[0]} 轻轻流淌，带走了时光。`,
+                `${words[0]}，是我遗忘的梦。`,
+                `${words[0]}，在每个清晨呼唤我。`,
+                `${words[0]} 像海浪般拍打着岸边。`,
+                `${words[0]} 是一缕微风，吹散了烦恼。`,
+                `${words[0]}，你从未远离过我。`,
+                `${words[0]}，是我无法忘却的记忆。`,
+                `${words[0]} 在黑夜中闪烁。`,
+                `${words[0]} 是我追寻的方向。`,
+                `${words[0]}，让我迷失在时间的河流中。`,
+                `${words[0]} 是我心灵的避风港。`,
+                `${words[0]} 轻轻一触，便消失于无形。`,
+                `${words[0]}，带走了我的思绪。`,
+                `${words[0]} 是我永远的守望。`,
+                `${words[0]}，是我无法触及的梦想。`,
+                `${words[0]} 沉睡在岁月的深处，不愿惊扰时光的流逝。`,
+                `${words[0]} 一声轻叹，撕裂了黑夜的寂静。`,
+                `${words[0]} 在无声中盛放，宛如星河般闪耀。`,
+                `${words[0]} 把思念缠绕在指尖，却看不见终点。`,
+                `${words[0]} 只是在时光的尽头，留下一片叹息。`,
+                `${words[0]} 在记忆的河流中悄然浮沉，难以捉摸。`,
+                `${words[0]} 是那清晨的露珠，未见阳光已悄然消逝。`,
+                `${words[0]} 化作一缕风，轻轻划过心湖的宁静。`,
+                `${words[0]} 像一段未完成的诗篇，永远悬在天际。`,
+                `${words[0]} 一片羽毛，飘落在时光的无垠中。`,
+                `${words[0]} 躲在梦的深处，等待一次未曾到来的相遇。`,
+                `${words[0]} 轻轻触碰着月光，渗透进夜的静谧。`,
+                `${words[0]} 化作雾中的微光，点亮了最深的孤寂。`,
+                `${words[0]} 消失在远方的地平线上，像不曾存在的黎明。`,
+                `${words[0]} 静候在时光的缝隙里，守望着永远无法触及的彼岸。`,
+                `${words[0]} 在微风中起舞，似乎听到了古老的回响。`,
+                `${words[0]} 藏在雨后的彩虹中，瞬间照亮整个天空。`,
+                `${words[0]} 一次无声的呼唤，穿过时间的长河。`,
+                `${words[0]} 在人群中静静流淌，却无人停留驻足。`,
+                `${words[0]} 化作一阵微风，带走了昨日的故事。`,
+                `${words[0]} 掠过窗前的晨曦，轻触梦的边缘。`,
+                `${words[0]} 随着夜色的沉默，悄然隐没在星空之中。`,
+                `${words[0]} 不是昨日的回忆，而是未来未曾到来的梦。`,
+                `${words[0]} 在时光的深处低吟，像一首未被写下的诗。`,
+                `${words[0]} 沉浸在旧时光里，仿佛从未离开过。`,
+                `${words[0]} 等待着，像树叶等风，像星辰等夜。`,
+                `${words[0]} 化作一片云朵，浮游在记忆的天空。`,
+                `${words[0]} 不过是心底的一场风暴，无声，却掀起波澜。`,
+                `${words[0]} 于无声处悄然绽放，恍若从未存在。`,
+                `${words[0]} 没有颜色，也没有形状，只是被记忆轻轻拂过。`,
+                `${words[0]} 游走在时间的边缘，留下了一丝无法触摸的痕迹。`,
+                `${words[0]} 藏在未说出口的梦中，像未央的夜色。`,
+                `${words[0]} 终究没能等到黎明，却化作了第一道晨光。`,
+                `${words[0]} 轻轻落在心头，像那消散在远方的钟声。`,
+                `${words[0]} 在目光交汇的瞬间，已然成了过去。`,
+                `${words[0]} 默默凝望着星空，仿佛在等待一次永恒的归来。`,
+                `${words[0]} 是远方未归的旅人，走过了漫长的黑夜。`,
+                `${words[0]} 在风里飘动，像孩子的耳语般轻柔。`,
+                `${words[0]} 如潮汐般来去无痕，留下心底最深的叹息。`,
+                `${words[0]} 等待着未来的某一刻，与记忆交错重逢。`,
+                `${words[0]} 掠过了千山万水，却找不到归宿。`,
+                `${words[0]} 渐渐消失在风中，像未说出口的诺言。`,
+                `${words[0]} 悄悄埋藏在梦的深处，留给未来去追寻。`,
+                `${words[0]} 在时间的交汇处停留，听见了未来的回声。`,
+                `${words[0]} 穿越了梦与现实的边界，最终停在了虚无之中。`,
+                `${words[0]} 在夜的尽头，化作了星辰的叹息。`,
+                `${words[0]} 是曾经未完成的约定，永远消失在远方。`,
+                `${words[0]} 在光影交错的瞬间，已然成了永恒。`,
+                `${words[0]} 在记忆的尽头，留下了一道无法逾越的鸿沟。`,
+                `${words[0]} 一瞬的心动，已化作了无尽的星河。`
+            ],
+            2: [
+                `${words[0]} 与 ${words[1]} 相遇，\n它们诉说着无声的故事。`,
+                `${words[0]} 藏在 ${words[1]} 的背后，\n等待着时间的流逝。`,
+                `${words[0]} 是 ${words[1]} 的倒影，\n如同天与地的交汇。`,
+                `${words[0]} 与 ${words[1]} 相遇，\n它们诉说着无声的故事。`,
+                `${words[0]} 藏在 ${words[1]} 的背后，\n等待着时间的流逝。`,
+                `${words[0]} 是 ${words[1]} 的倒影，\n如同天与地的交汇。`,
+                `${words[0]} 和 ${words[1]}，永远是我的思念。`,
+                `${words[0]} 静静地看着 ${words[1]}，不发一语。`,
+                `${words[0]} 与 ${words[1]} 交织成梦。`,
+                `${words[0]} 沉默着，而 ${words[1]} 在远方等待。`,
+                `${words[0]} 随着 ${words[1]} 的流动，消散在风中。`,
+                `${words[0]} 与 ${words[1]} 相遇，是命运的安排。`,
+                `${words[0]} 是 ${words[1]} 的倒影，永不分离。`,
+                `${words[0]} 在 ${words[1]} 中寻找归途。`,
+                `${words[0]} 如 ${words[1]}，永远无法捕捉。`,
+                `${words[0]} 和 ${words[1]}，在时间的缝隙中相逢。`,
+                `${words[0]} 是 ${words[1]} 的呼唤。`,
+                `${words[0]} 在 ${words[1]} 的怀抱中沉睡。`,
+                `${words[0]} 和 ${words[1]} 一起消失在时间的尽头。`,
+                `${words[0]} 轻轻拥抱 ${words[1]}，不留痕迹。`,
+                `${words[0]} 和 ${words[1]} 的故事，写满了时光。`,
+                `${words[0]}，你的身影藏在 ${words[1]} 的深处。`,
+                `${words[0]}，你像 ${words[1]} 一样不可捉摸。`,
+                `${words[0]} 是 ${words[1]} 的呢喃，在风中回荡。`,
+                `${words[0]} 和 ${words[1]}，是我梦中的碎片。`,
+                `${words[0]} 是 ${words[1]} 的回声，遥远而清晰。`,
+                `${words[0]} 和 ${words[1]}，在无尽的夜色中徘徊。`,
+                `${words[0]} 的出现，带走了 ${words[1]} 的忧伤。`,
+                `${words[0]} 是 ${words[1]} 留下的痕迹。`,
+                `${words[0]} 与 ${words[1]} 交织成一段永恒的诗篇。`,
+                `${words[0]} 和 ${words[1]}，在无声中诉说着秘密。`,
+                `${words[0]} 与 ${words[1]} 低语，\n在星空深处游荡。`,
+                `${words[0]} 走向 ${words[1]}，\n脚步轻盈如羽。`,
+                `${words[0]} 等待 ${words[1]}，\n像春日里的花苞。`,
+                `${words[0]} 映照 ${words[1]}，\n宛若镜中的倒影。`,
+                `${words[0]} 轻抚 ${words[1]}，\n像风拂过草尖。`,
+                `${words[0]} 陪伴 ${words[1]}，\n仿佛云遮住了月。`,
+                `${words[0]} 穿越 ${words[1]}，\n消失在时光深处。`,
+                `${words[0]} 握住 ${words[1]}，\n像夜空中的一颗星。`,
+                `${words[0]} 呼唤 ${words[1]}，\n带来无声的回响。`,
+                `${words[0]} 隐藏在 ${words[1]} 之后，\n默默守候。`,
+                `${words[0]} 落入 ${words[1]}，\n如同黎明拥抱黑夜。`,
+                `${words[0]} 追随 ${words[1]}，\n在梦的边缘徘徊。`,
+                `${words[0]} 与 ${words[1]} 交错，\n在时光的缝隙中闪现。`,
+                `${words[0]} 挥别 ${words[1]}，\n留下一阵轻叹。`,
+                `${words[0]} 凝望着 ${words[1]}，\n无声无息。`,
+                `${words[0]} 融入 ${words[1]}，\n仿佛流星坠入海面。`,
+                `${words[0]} 绕过 ${words[1]}，\n像潮水绕过孤岛。`,
+                `${words[0]} 踏入 ${words[1]}，\n步伐如水般平静。`,
+                `${words[0]} 与 ${words[1]} 共舞，\n夜风悄然起伏。`,
+                `${words[0]} 沉默于 ${words[1]}，\n仿佛不曾存在。`,
+                `${words[0]} 在 ${words[1]} 中，\n悄悄绽放。`,
+                `${words[0]} 擦肩 ${words[1]}，\n如梦般虚幻。`,
+                `${words[0]} 落在 ${words[1]} 上，\n悄无声息地消散。`,
+                `${words[0]} 呼吸着 ${words[1]}，\n感受心灵的悸动。`,
+                `${words[0]} 捕捉 ${words[1]}，\n如风般短暂。`,
+                `${words[0]} 躺在 ${words[1]} 的怀中，\n聆听着未来的声音。`,
+                `${words[0]} 轻吻 ${words[1]}，\n留下微弱的痕迹。`,
+                `${words[0]} 与 ${words[1]} 交汇，\n像日落与黄昏。`,
+                `${words[0]} 遗忘了 ${words[1]}，\n却在每个清晨重现。`,
+                `${words[0]} 随着 ${words[1]} 飘远，\n留下一道无声的涟漪。`,
+                `${words[0]} 陪伴 ${words[1]}，\n仿佛永不分离。`,
+                `${words[0]} 游荡在 ${words[1]}，\n像光穿透云层。`,
+                `${words[0]} 静立于 ${words[1]}，\n如树影伫立风中。`,
+                `${words[0]} 踏过 ${words[1]}，\n仿佛从未存在过。`,
+                `${words[0]} 融化在 ${words[1]} 中，\n像雪融入海。`,
+                `${words[0]} 回应着 ${words[1]}，\n在梦的深处。`,
+                `${words[0]} 随 ${words[1]} 飘散，\n在无尽的夜里。`,
+                `${words[0]} 凝视 ${words[1]}，\n像星辰注视大海。`,
+                `${words[0]} 静候 ${words[1]}，\n仿佛时光静止。`,
+                `${words[0]} 漫游 ${words[1]}，\n在时光的尽头相逢。`,
+                `${words[0]} 趟过 ${words[1]}，\n在永恒的河流中漂泊。`,
+                `${words[0]} 跟随 ${words[1]}，\n寻找失落的时光。`,
+                `${words[0]} 远去，\n而 ${words[1]} 停留在原地。`,
+                `${words[0]} 缠绕 ${words[1]}，\n仿佛夜风轻轻拂过。`,
+                `${words[0]} 流淌在 ${words[1]} 之间，\n如溪水般清澈。`,
+                `${words[0]} 编织着 ${words[1]}，\n在星光下的梦境中。`,
+                `${words[0]} 和 ${words[1]} 相逢，\n悄然无声。`,
+                `${words[0]} 穿越 ${words[1]}，\n消失在无尽的天际。`
+            ],
+            3: [
+                `${words[0]} 在 ${words[1]} 的怀抱中沉睡，\n${words[2]} 是他们的低语。`,
+                `在 ${words[0]} 的眼中，\n${words[1]} 是永恒的，\n而 ${words[2]} 则消逝于风中。`,
+                `${words[0]} 在 ${words[1]} 的怀抱中沉睡，\n${words[2]} 是他们的低语。`,
+                `在 ${words[0]} 的眼中，\n${words[1]} 是永恒的，\n而 ${words[2]} 则消逝于风中。`,
+                `${words[0]} 与 ${words[1]} 交汇，\n${words[2]} 成了这片梦境的回响。`,
+                `${words[0]} 和 ${words[1]} 交织，\n${words[2]} 是它们的影子。`,
+                `${words[0]} 藏在 ${words[1]} 的深处，\n等待 ${words[2]} 的到来。`,
+                `${words[0]} 与 ${words[1]} 共舞，\n而 ${words[2]} 是它们的低语。`,
+                `${words[0]} 在 ${words[1]} 的怀抱中沉睡，\n${words[2]} 是他们的梦。`,
+                `${words[0]} 像 ${words[1]}，\n而 ${words[2]} 如风般吹过。`,
+                `${words[0]} 和 ${words[1]} 一起，\n寻找着 ${words[2]} 的踪迹。`,
+                `${words[0]} 是 ${words[1]} 的倒影，\n而 ${words[2]} 则是它的回声。`,
+                `${words[0]} 和 ${words[1]} 并肩而行，\n${words[2]} 悄悄跟随其后。`,
+                `${words[0]}，你的声音伴随 ${words[1]}，\n${words[2]} 在风中回响。`,
+                `${words[0]} 随着 ${words[1]} 的脚步，\n${words[2]} 渐行渐远。`,
+                `${words[0]} 与 ${words[1]} 相遇，\n${words[2]} 伴随着它们的步伐。`,
+                `${words[0]} 在 ${words[1]} 的身边徘徊，\n${words[2]} 是它们的引路灯。`,
+                `${words[0]} 的呼吸像 ${words[1]}，\n而 ${words[2]} 是最后的叹息。`,
+                `${words[0]} 与 ${words[1]} 交错，\n${words[2]} 是这场梦的终结。`,
+                `${words[0]} 依偎在 ${words[1]} 的怀抱中，\n${words[2]} 像轻风一样。`,
+                `${words[0]} 是 ${words[1]} 的希望，\n而 ${words[2]} 却悄然离去。`,
+                `${words[0]} 和 ${words[1]}，\n伴随着 ${words[2]} 远去。`,
+                `${words[0]} 静静注视 ${words[1]}，\n${words[2]} 是未曾说出口的话。`,
+                `${words[0]} 在 ${words[1]} 的光芒中，\n而 ${words[2]} 在等待奇迹。`,
+                `${words[0]} 是 ${words[1]} 的倒影，\n${words[2]} 是这段旅程的终点。`,
+                `${words[0]} 和 ${words[1]}，\n一同走向 ${words[2]} 的尽头。`,
+                `${words[0]} 是一片宁静，\n而 ${words[1]} 和 ${words[2]}，\n是它的回响。`,
+                `${words[0]} 和 ${words[1]} 交织，\n${words[2]} 则在远方徘徊。`,
+                `${words[0]} 与 ${words[1]} 消失在黑夜中，\n只留下 ${words[2]} 的回声。`,
+                `${words[0]} 像微风，\n${words[1]} 和 ${words[2]} 是它的尾声。`,
+                `${words[0]} 穿越 ${words[1]} 的边界，\n${words[2]} 无声消融。`,
+                `${words[0]} 守候在 ${words[1]} 的尽头，\n${words[2]} 悄然离去。`,
+                `${words[0]} 在 ${words[1]} 的虚空中徘徊，\n${words[2]} 如影随形。`,
+                `${words[0]} 流连于 ${words[1]} 的裂缝中，\n${words[2]} 渐渐淡去。`,
+                `${words[0]} 捕捉 ${words[1]} 的碎片，\n${words[2]} 消逝于虚空。`,
+                `${words[0]} 点燃了 ${words[1]} 的灰烬，\n${words[2]} 回荡在远方。`,
+                `${words[0]} 渗透 ${words[1]} 的边缘，\n${words[2]} 无法触碰。`,
+                `${words[0]} 消失在 ${words[1]} 的寂静中，\n${words[2]} 无迹可寻。`,
+                `${words[0]} 承载着 ${words[1]} 的重量，\n${words[2]} 渐行渐远。`,
+                `${words[0]} 在 ${words[1]} 的阴影中闪烁，\n${words[2]} 化为尘埃。`,
+                `${words[0]} 游离于 ${words[1]} 的空隙，\n${words[2]} 未曾留下痕迹。`,
+                `${words[0]} 穿梭在 ${words[1]} 的裂痕，\n${words[2]} 悄无声息。`,
+                `${words[0]} 飘荡在 ${words[1]} 的脉络间，\n${words[2]} 化为虚无。`,
+                `${words[0]} 跌入 ${words[1]} 的深渊，\n${words[2]} 化为消散的气息。`,
+                `${words[0]} 倾听 ${words[1]} 的回声，\n${words[2]} 从未存在。`,
+                `${words[0]} 编织 ${words[1]} 的轮廓，\n${words[2]} 悬浮在虚空。`,
+                `${words[0]} 融入 ${words[1]} 的轮回，\n${words[2]} 是最后的微光。`,
+                `${words[0]} 追随着 ${words[1]} 的呼吸，\n${words[2]} 是遥远的余音。`,
+                `${words[0]} 围绕着 ${words[1]} 的废墟，\n${words[2]} 悄然消散。`,
+                `${words[0]} 在 ${words[1]} 的裂缝中生长，\n${words[2]} 是飘零的尘埃。`,
+                `${words[0]} 落入 ${words[1]} 的寂静，\n${words[2]} 逐渐远去。`,
+                `${words[0]} 映照 ${words[1]} 的镜面，\n${words[2]} 在虚幻中游离。`,
+                `${words[0]} 盘旋在 ${words[1]} 的廊道，\n${words[2]} 永远未曾降临。`,
+                `${words[0]} 穿越 ${words[1]} 的迷宫，\n${words[2]} 是消失的预言。`,
+                `${words[0]} 留下了 ${words[1]} 的余温，\n${words[2]} 是最后的回响。`,
+                `${words[0]} 在 ${words[1]} 的尽头行走，\n${words[2]} 在阴影中蜕变。`,
+                `${words[0]} 倾听 ${words[1]} 的脉动，\n${words[2]} 是无声的叹息。`,
+                `${words[0]} 迷失在 ${words[1]} 的旋涡，\n${words[2]} 悄悄滑落。`,
+                `${words[0]} 吞噬着 ${words[1]} 的余光，\n${words[2]} 从未回归。`,
+                `${words[0]} 停留在 ${words[1]} 的尽头，\n${words[2]} 轻轻散开。`,
+                `${words[0]} 随着 ${words[1]} 渐行渐远，\n${words[2]} 无从捕捉。`,
+                `${words[0]} 穿透 ${words[1]} 的沉默，\n${words[2]} 渐渐消隐。`,
+                `${words[0]} 在 ${words[1]} 的边缘颤动，\n${words[2]} 在风中碎裂。`,
+                `${words[0]} 溢出了 ${words[1]} 的轮廓，\n${words[2]} 再无声息。`,
+                `${words[0]} 刻印在 ${words[1]} 的表面，\n${words[2]} 是无法言说的结局。`,
+                `${words[0]} 在 ${words[1]} 的迷雾中徘徊，\n${words[2]} 是未解的谜语。`,
+                `${words[0]} 凝视着 ${words[1]} 的深渊，\n${words[2]} 从未存在。`,
+                `${words[0]} 在 ${words[1]} 的光影中呼吸，\n${words[2]} 渐渐消失。`,
+                `${words[0]} 挂在 ${words[1]} 的天边，\n${words[2]} 化作无声的坠落。`,
+                `${words[0]} 编织了 ${words[1]} 的轮廓，\n${words[2]} 在空中散开。`,
+                `${words[0]} 掠过 ${words[1]} 的指尖，\n${words[2]} 化作星尘。`,
+                `${words[0]} 飘荡在 ${words[1]} 的回廊，\n${words[2]} 随风远去。`,
+                `${words[0]} 藏匿于 ${words[1]} 的裂隙，\n${words[2]} 被无声吞噬。`,
+                `${words[0]} 再次遇见 ${words[1]}，\n${words[2]} 是最后的呢喃。`,
+                `${words[0]} 游走在 ${words[1]} 的梦境，\n${words[2]} 是破碎的流光。`,
+                `${words[0]} 失落在 ${words[1]} 的深渊，\n${words[2]} 是最后的余烬。`,
+                `${words[0]} 在 ${words[1]} 中徘徊，\n${words[2]} 是无法触碰的幻象。`,
+                `${words[0]} 落入 ${words[1]} 的怀抱，\n${words[2]} 再无归途。`,
+                `${words[0]} 倒映在 ${words[1]} 的河流中，\n${words[2]} 是消散的轨迹。`,
+                `${words[0]} 掩埋于 ${words[1]} 的流沙，\n${words[2]} 在风中低语。`
+                
+            ],
+            4: [
+                `${words[0]} 与 ${words[1]} 同行，\n${words[2]} 与 ${words[3]} 呢喃，\n它们在这无尽的时间中徘徊。`,
+                `${words[0]} 落入 ${words[1]} 的怀抱，\n${words[2]} 是一阵风，\n而 ${words[3]} 是远方的星光。`,
+                `在 ${words[0]} 中找寻 ${words[1]}，\n却只看见 ${words[2]} 和 ${words[3]} 的影子。`,
+                `${words[0]} 与 ${words[1]} 同行，\n${words[2]} 和 ${words[3]} 是他们的低语。`,
+                `${words[0]} 伴随 ${words[1]} 的脚步，\n${words[2]} 与 ${words[3]} 渐行渐远。`,
+                `${words[0]} 和 ${words[1]}，\n一起穿越 ${words[2]} 和 ${words[3]} 的梦境。`,
+                `${words[0]} 在 ${words[1]} 的眼中，\n而 ${words[2]} 与 ${words[3]} 则在风中相遇。`,
+                `${words[0]} 和 ${words[1]} 在黎明时相遇，\n${words[2]} 与 ${words[3]} 在黑暗中消逝。`,
+                `${words[0]} 和 ${words[1]} 是过去，\n而 ${words[2]} 和 ${words[3]} 是未来。`,
+                `${words[0]} 是 ${words[1]} 的影子，\n而 ${words[2]} 则像 ${words[3]} 的倒影。`,
+                `${words[0]} 与 ${words[1]} 并肩而行，\n而 ${words[2]} 和 ${words[3]} 远远跟随。`,
+                `${words[0]} 与 ${words[1]} 重逢，\n${words[2]} 在 ${words[3]} 中漫步。`,
+                `${words[0]} 藏在 ${words[1]} 的深处，\n${words[2]} 静观 ${words[3]} 的远方。`,
+                `${words[0]} 随着 ${words[1]} 的流逝，\n${words[2]} 穿过 ${words[3]} 的裂缝。`,
+                `${words[0]} 抵达 ${words[1]} 的边缘，\n${words[2]} 沉默于 ${words[3]} 的尽头。`,
+                `${words[0]} 在 ${words[1]} 中徘徊，\n${words[2]} 划过 ${words[3]} 的河流。`,
+                `${words[0]} 守望着 ${words[1]}，\n${words[2]} 在 ${words[3]} 中渐远。`,
+                `${words[0]} 步入 ${words[1]} 的废墟，\n${words[2]} 消散于 ${words[3]} 的夜空。`,
+                `${words[0]} 捕捉 ${words[1]} 的余温，\n${words[2]} 探索 ${words[3]} 的谜团。`,
+                `${words[0]} 穿越 ${words[1]} 的海洋，\n${words[2]} 融化在 ${words[3]} 的尘埃中。`,
+                `${words[0]} 拥抱 ${words[1]} 的虚无，\n${words[2]} 凝视 ${words[3]} 的倒影。`,
+                `${words[0]} 承载着 ${words[1]} 的沉默，\n${words[2]} 编织 ${words[3]} 的幻境。`,
+                `${words[0]} 在 ${words[1]} 中闪烁，\n${words[2]} 停留于 ${words[3]} 的空隙。`,
+                `${words[0]} 漂泊于 ${words[1]} 的边缘，\n${words[2]} 沉醉在 ${words[3]} 的怀抱。`,
+                `${words[0]} 消散在 ${words[1]} 的深处，\n${words[2]} 描绘 ${words[3]} 的回忆。`,
+                `${words[0]} 渗透 ${words[1]} 的裂缝，\n${words[2]} 抚平 ${words[3]} 的荒芜。`,
+                `${words[0]} 在 ${words[1]} 中沉默，\n${words[2]} 静立于 ${words[3]} 的廊道。`,
+                `${words[0]} 追逐着 ${words[1]} 的脚步，\n${words[2]} 摇曳于 ${words[3]} 的边缘。`,
+                `${words[0]} 掩映于 ${words[1]} 的光线，\n${words[2]} 穿透 ${words[3]} 的薄雾。`,
+                `${words[0]} 遗忘了 ${words[1]}，\n而 ${words[2]} 守护着 ${words[3]} 的孤独。`,
+                `${words[0]} 沉入 ${words[1]} 的河流，\n${words[2]} 反射 ${words[3]} 的光影。`,
+                `${words[0]} 与 ${words[1]} 分离，\n${words[2]} 融入 ${words[3]} 的虚空。`,
+                `${words[0]} 凝视着 ${words[1]}，\n而 ${words[2]} 悄悄跨过 ${words[3]}。`,
+                `${words[0]} 步入 ${words[1]} 的边界，\n${words[2]} 轻触 ${words[3]} 的廊道。`,
+                `${words[0]} 划破 ${words[1]} 的寂静，\n${words[2]} 在 ${words[3]} 中渐行渐远。`,
+                `${words[0]} 在 ${words[1]} 旁漂浮，\n${words[2]} 静谧于 ${words[3]} 的河流。`,
+                `${words[0]} 描绘 ${words[1]} 的轮廓，\n而 ${words[2]} 融化在 ${words[3]} 之中。`,
+                `${words[0]} 落入 ${words[1]} 的时空，\n${words[2]} 托起 ${words[3]} 的星光。`,
+                `${words[0]} 穿透 ${words[1]} 的荒原，\n${words[2]} 映照 ${words[3]} 的残影。`,
+                `${words[0]} 倾听 ${words[1]} 的回声，\n${words[2]} 静待 ${words[3]} 的终点。`,
+                `${words[0]} 在 ${words[1]} 之上浮现，\n${words[2]} 编织 ${words[3]} 的余音。`,
+                `${words[0]} 流淌在 ${words[1]} 的河流，\n${words[2]} 与 ${words[3]} 相交。`,
+                `${words[0]} 穿越 ${words[1]} 的迷雾，\n${words[2]} 消失在 ${words[3]} 的回忆中。`,
+                `${words[0]} 在 ${words[1]} 中驻足，\n而 ${words[2]} 捕捉 ${words[3]} 的碎片。`,
+                `${words[0]} 依附于 ${words[1]} 的光线，\n${words[2]} 将 ${words[3]} 握在手心。`,
+                `${words[0]} 沉默在 ${words[1]} 的影子里，\n${words[2]} 追随 ${words[3]} 的足迹。`,
+                `${words[0]} 破碎在 ${words[1]} 之间，\n${words[2]} 在 ${words[3]} 中消散。`,
+                `${words[0]} 陪伴着 ${words[1]}，\n而 ${words[2]} 穿梭于 ${words[3]}。`,
+                `${words[0]} 闪烁在 ${words[1]} 的尽头，\n${words[2]} 握紧了 ${words[3]}。`,
+                `${words[0]} 随着 ${words[1]} 漂流，\n${words[2]} 笑看 ${words[3]} 的痕迹。`,
+                `${words[0]} 越过 ${words[1]} 的边界，\n${words[2]} 触碰到 ${words[3]} 的余晖。`,
+                `${words[0]} 守护着 ${words[1]}，\n而 ${words[2]} 消融于 ${words[3]}。`,
+                `${words[0]} 在 ${words[1]} 之后徘徊，\n${words[2]} 消失于 ${words[3]} 的风中。`,
+                `${words[0]} 牵引着 ${words[1]}，\n而 ${words[2]} 在 ${words[3]} 中浮现。`,
+                `${words[0]} 眺望 ${words[1]} 的远方，\n${words[2]} 编织 ${words[3]} 的结局。`,
+                `${words[0]} 缠绕 ${words[1]} 的影子，\n而 ${words[2]} 静守在 ${words[3]} 旁。`,
+                `${words[0]} 沉默于 ${words[1]} 的荒野，\n${words[2]} 在 ${words[3]} 里沉浮。`,
+                `${words[0]} 捕捉 ${words[1]} 的气息，\n${words[2]} 停留在 ${words[3]} 的边缘。`,
+                `${words[0]} 留下了 ${words[1]} 的痕迹，\n而 ${words[2]} 沉入 ${words[3]}。`,
+                `${words[0]} 追随 ${words[1]} 的脚步，\n${words[2]} 在 ${words[3]} 中幻灭。`,
+                `${words[0]} 刻印在 ${words[1]} 的光影，\n${words[2]} 凝望 ${words[3]} 的未来。`
+            ]
+        },
+        en: {
+            1: [
+                `${words[0]} is the only scene in my dreams.`,
+                `In the night, \n${words[0]} is the only light.`,
+                `${words[0]} moves like the wind, \ngently brushing through my heart.`,
+                `${words[0]} is the only light in the endless darkness.`,
+                `${words[0]} whispers softly through the night.`,
+                `${words[0]} dances like a flame in the cold air.`,
+                `${words[0]} moves through my dreams, leaving only silence.`,
+                `${words[0]} is the echo of forgotten voices.`,
+                `${words[0]} drifts like a cloud, untouchable and free.`,
+                `${words[0]} is the rhythm of my heartbeat.`,
+                `${words[0]} shines like the first morning star.`,
+                `${words[0]} is the wind that carries away my thoughts.`,
+                `${words[0]} glimmers in the distance, a hope not yet lost.`,
+                `${words[0]} is the shadow that never leaves.`,
+                `${words[0]} flows like water, slipping through my fingers.`,
+                `${words[0]} hums in the stillness of the night.`,
+                `${words[0]} rests quietly on the horizon, waiting.`,
+                `${words[0]} is the quiet hum of the universe.`,
+                `${words[0]} rises like the sun, bringing warmth to the cold.`,
+                `${words[0]} is the star that guides me home.`,
+                `${words[0]} falls like a leaf, slowly and softly.`,
+                `${words[0]} lingers in the air, filling the silence.`,
+                `${words[0]} echoes through the empty streets.`,
+                `${words[0]} wraps around me like a gentle breeze.`,
+                `${words[0]} stands alone, strong against the storm.`,
+                `${words[0]} flickers like a candle in the wind.`,
+                `${words[0]} holds the key to forgotten memories.`,
+                `${words[0]} whispers of the past, a memory yet to fade.`,
+                `${words[0]} sleeps deep within the years, unwilling to disturb the passage of time.`,
+                `${words[0]} sighs softly, tearing apart the silence of the night.`,
+                `${words[0]} blooms in silence, shining like a river of stars.`,
+                `${words[0]} wraps itself around my fingertips, but the end is nowhere to be seen.`,
+                `${words[0]} leaves nothing but a sigh at the edge of time.`,
+                `${words[0]} floats and sinks quietly in the river of memory, elusive and fleeting.`,
+                `${words[0]} is the morning dew, vanishing before the sun can touch it.`,
+                `${words[0]} becomes a breeze, gently stirring the still waters of the heart.`,
+                `${words[0]} is an unfinished poem, forever suspended in the sky.`,
+                `${words[0]} drifts like a feather, falling into the boundless time.`,
+                `${words[0]} hides deep within the dream, waiting for a meeting that never arrives.`,
+                `${words[0]} touches the moonlight softly, seeping into the night's quiet.`,
+                `${words[0]} transforms into a misty light, illuminating the deepest solitude.`,
+                `${words[0]} fades into the distant horizon, like a dawn that never comes.`,
+                `${words[0]} lingers at the seams of time, watching the unreachable shore.`,
+                `${words[0]} dances in the breeze, as if hearing echoes from long ago.`,
+                `${words[0]} hides in the rainbow after the rain, momentarily lighting up the sky.`,
+                `${words[0]} is a silent call, crossing the river of time.`,
+                `${words[0]} flows quietly through the crowd, unnoticed and unremembered.`,
+                `${words[0]} turns into a breeze, carrying away the stories of yesterday.`,
+                `${words[0]} brushes past the morning light, softly touching the edge of dreams.`,
+                `${words[0]} fades with the silence of the night, disappearing into the stars.`,
+                `${words[0]} is not a memory of yesterday, but a dream that has yet to arrive.`,
+                `${words[0]} whispers at the depths of time, like an unwritten poem.`,
+                `${words[0]} sinks into the old days, as if it never left.`,
+                `${words[0]} waits like leaves for the wind, like stars for the night.`,
+                `${words[0]} becomes a cloud, floating through the sky of memory.`,
+                `${words[0]} is but a storm in the heart, silent, yet stirring waves.`,
+                `${words[0]} blooms quietly in the unspoken places, as if it never existed.`,
+                `${words[0]} has no color, no form, merely brushed by the light of memory.`,
+                `${words[0]} wanders at the edge of time, leaving a mark that cannot be touched.`,
+                `${words[0]} hides in unspoken dreams, like the unending night.`,
+                `${words[0]} never saw the dawn, yet became the first light of morning.`,
+                `${words[0]} falls softly on the heart, like the fading chime in the distance.`,
+                `${words[0]} disappears the moment our eyes meet, becoming the past.`,
+                `${words[0]} gazes silently at the stars, as if waiting for an eternal return.`,
+                `${words[0]} is the traveler from afar, walking through the long night.`,
+                `${words[0]} flutters in the wind, as gentle as a child's whisper.`,
+                `${words[0]} comes and goes like the tide, leaving behind the deepest sigh.`,
+                `${words[0]} waits for the future to cross paths with forgotten memories.`,
+                `${words[0]} has crossed mountains and rivers, yet finds no home.`,
+                `${words[0]} fades into the wind, like a promise left unspoken.`,
+                `${words[0]} is quietly buried deep within dreams, waiting to be pursued by the future.`,
+                `${words[0]} lingers at the crossroads of time, hearing echoes of the future.`,
+                `${words[0]} crosses the boundary between dream and reality, only to rest in nothingness.`,
+                `${words[0]} fades at the end of the night, becoming the sigh of the stars.`,
+                `${words[0]} is a promise left unfulfilled, forever lost in the distance.`,
+                `${words[0]} pauses at the moment light meets shadow, becoming eternal.`,
+                `${words[0]} leaves an insurmountable gap at the end of memory.`,
+                `${words[0]} is a momentary heartbeat, now a river of stars.`,
+                `${words[0]} drifts through the night, untethered and free.`,
+                `${words[0]} is the whisper of stars, lost to the dawn.`,
+                `${words[0]} lingers like a shadow, unseen but felt.`,
+                `${words[0]} is the breath of time, slipping through space.`,
+                `${words[0]} fades like a dream, too fleeting to hold.`,
+                `${words[0]} hums like a secret, hidden in the wind.`,
+                `${words[0]} trembles in the quiet, waiting for light.`,
+                `${words[0]} rises like smoke, dissolving into the sky.`,
+                `${words[0]} is the weight of silence, heavy and still.`,
+                `${words[0]} dances on the edge of thought, fragile and faint.`,
+                `${words[0]} curls like mist, vanishing before it is seen.`,
+                `${words[0]} is the echo of a memory, lingering on the breeze.`,
+                `${words[0]} whispers like a secret, hidden from the world.`,
+                `${words[0]} hovers between the stars, caught in the in-between.`,
+                `${words[0]} flows like a river of light, winding through the night.`,
+                `${words[0]} hangs like a question, unanswered and unknown.`,
+                `${words[0]} weaves through the wind, a thread in the night.`,
+                `${words[0]} is the pulse of the moon, steady and far.`,
+                `${words[0]} slips like water through the cracks of time.`,
+                `${words[0]} murmurs in the shadows, soft and quiet.`,
+                `${words[0]} flickers like a thought, just out of reach.`,
+                `${words[0]} drifts like a feather on the current of dreams.`,
+                `${words[0]} sighs like the wind, touching all but holding none.`,
+                `${words[0]} is the color of the horizon, forever fading.`,
+                `${words[0]} stands between worlds, never truly belonging.`,
+                `${words[0]} quivers in the stillness, waiting for breath.`,
+                `${words[0]} is the breath before the storm, still and full.`,
+                `${words[0]} clings like a memory, too soft to be seen.`,
+                `${words[0]} hums in the void, filling the space between.`,
+                `${words[0]} walks the line between the known and the unknown.`,
+                `${words[0]} falls like the first rain, gentle and soft.`,
+                `${words[0]} is the sigh of the stars, distant and cold.`,
+                `${words[0]} hums with the rhythm of the earth, ancient and slow.`,
+                `${words[0]} moves through the silence, leaving ripples in its wake.`,
+                `${words[0]} rests in the space between moments, quiet and sure.`,
+                `${words[0]} lingers like a half-remembered song, just out of reach.`,
+                `${words[0]} stirs like the wind, carrying whispers of another world.`,
+                `${words[0]} flickers like the edge of a dream, almost real.`,
+                `${words[0]} trembles like a leaf, caught between air and earth.`,
+                `${words[0]} moves like a shadow, silent and unseen.`,
+                `${words[0]} rises like the first light of dawn, chasing away the dark.`,
+                `${words[0]} echoes like footsteps in an empty hall, faint and distant.`,
+                `${words[0]} is the scent of rain, fresh and forgotten.`,
+                `${words[0]} unfolds like the petals of a flower, slow and deliberate.`,
+                `${words[0]} whispers in the stillness, soft as the falling night.`,
+                `${words[0]} is the breath of the sky, expansive and full.`,
+                `${words[0]} ripples through the air, unseen but felt.`,
+                `${words[0]} is the quiet between breaths, a space suspended in time.`,
+                `${words[0]} glows like the last light on the horizon, fading into nothingness.`
+            ],
+            2: [
+                `${words[0]} meets ${words[1]}, \nthey tell a story without words.`,
+                `${words[0]} hides behind ${words[1]}, \nwaiting for time to pass.`,
+                `${words[0]} is the reflection of ${words[1]}, \nlike the meeting of heaven and earth.`,
+                `${words[0]} meets ${words[1]}, \nthey tell a story without words.`,
+                `${words[0]} hides behind ${words[1]}, \nwaiting for time to pass.`,
+                `${words[0]} is the reflection of ${words[1]}, \nlike the meeting of heaven and earth.`,
+                `${words[0]} and ${words[1]} are forever my thoughts.`,
+                `${words[0]} quietly watches ${words[1]}, saying nothing.`,
+                `${words[0]} and ${words[1]} intertwine into a dream.`,
+                `${words[0]} remains silent, while ${words[1]} waits in the distance.`,
+                `${words[0]} fades with the flow of ${words[1]}, disappearing into the wind.`,
+                `${words[0]} meeting ${words[1]} is the arrangement of fate.`,
+                `${words[0]} is the reflection of ${words[1]}, never to be separated.`,
+                `${words[0]} searches for a way back through ${words[1]}.`,
+                `${words[0]} is like ${words[1]}, always elusive.`,
+                `${words[0]} and ${words[1]} meet in the gaps of time.`,
+                `${words[0]} is the call of ${words[1]}.`,
+                `${words[0]} sleeps in the embrace of ${words[1]}.`,
+                `${words[0]} and ${words[1]} vanish together at the end of time.`,
+                `${words[0]} gently embraces ${words[1]}, leaving no trace.`,
+                `${words[0]} and ${words[1]}'s story is written in the passage of time.`,
+                `${words[0]}, your figure is hidden deep in ${words[1]}.`,
+                `${words[0]}, you are as elusive as ${words[1]}.`,
+                `${words[0]} is the whisper of ${words[1]}, echoing in the wind.`,
+                `${words[0]} and ${words[1]} are fragments of my dream.`,
+                `${words[0]} is the echo of ${words[1]}, distant and clear.`,
+                `${words[0]} and ${words[1]} wander in the endless night.`,
+                `${words[0]} is the trace left by ${words[1]}.`,
+                `${words[0]} and ${words[1]} intertwine into an eternal poem.`,
+                `${words[0]} and ${words[1]} silently share their secrets.`
+            ],
+            3: [
+                `${words[0]} sleeps in the arms of ${words[1]}, \n${words[2]} is their whisper.`,
+                `In the eyes of ${words[0]}, \n${words[1]} is eternal, \nwhile ${words[2]} fades in the wind.`,
+                `${words[0]} sleeps in the arms of ${words[1]}, \n${words[2]} is their whisper.`,
+                `In the eyes of ${words[0]}, \n${words[1]} is eternal, \nwhile ${words[2]} fades in the wind.`,
+                `${words[0]} and ${words[1]} converge, \n${words[2]} becomes the echo of this dream.`,
+                `${words[0]} and ${words[1]} intertwine, \n${words[2]} is their shadow.`,
+                `${words[0]} hides deep within ${words[1]}, \nwaiting for the arrival of ${words[2]}.`,
+                `${words[0]} dances with ${words[1]}, \nwhile ${words[2]} is their whisper.`,
+                `${words[0]} sleeps in the arms of ${words[1]}, \n${words[2]} is their dream.`,
+                `${words[0]} is like ${words[1]}, \nand ${words[2]} passes like the wind.`,
+                `${words[0]} and ${words[1]} together, \nsearching for the traces of ${words[2]}.`,
+                `${words[0]} is the reflection of ${words[1]}, \nand ${words[2]} is its echo.`,
+                `${words[0]} walks alongside ${words[1]}, \nwhile ${words[2]} quietly follows.`,
+                `${words[0]}, your voice accompanies ${words[1]}, \nand ${words[2]} echoes in the wind.`,
+                `${words[0]} follows the steps of ${words[1]}, \nwhile ${words[2]} fades into the distance.`,
+                `${words[0]} meets ${words[1]}, \n${words[2]} follows their steps.`,
+                `${words[0]} wanders beside ${words[1]}, \nwhile ${words[2]} lights their path.`,
+                `${words[0]}'s breath is like ${words[1]}, \nand ${words[2]} is the final sigh.`,
+                `${words[0]} and ${words[1]} cross paths, \n${words[2]} marks the end of this dream.`,
+                `${words[0]} nestles in the arms of ${words[1]}, \nwhile ${words[2]} blows like a gentle breeze.`,
+                `${words[0]} is the hope of ${words[1]}, \nand ${words[2]} quietly slips away.`,
+                `${words[0]} and ${words[1]} drift away, \naccompanied by ${words[2]}.`,
+                `${words[0]} quietly watches ${words[1]}, \nand ${words[2]} is the unspoken words.`,
+                `${words[0]} stands in the light of ${words[1]}, \nand ${words[2]} awaits a miracle.`,
+                `${words[0]} is the reflection of ${words[1]}, \nand ${words[2]} is the destination of this journey.`,
+                `${words[0]} and ${words[1]} walk together, \nmoving towards the end with ${words[2]}.`,
+                `${words[0]} is a moment of peace, \nwhile ${words[1]} and ${words[2]} \nare its echoes.`,
+                `${words[0]} and ${words[1]} intertwine, \nwhile ${words[2]} wanders far away.`,
+                `${words[0]} and ${words[1]} disappear into the night, \nleaving only the echo of ${words[2]}.`,
+                `${words[0]} is like the breeze, \nwhile ${words[1]} and ${words[2]} are its fading song.`
+            ],
+            4: [
+                `${words[0]} walks alongside ${words[1]}, \n${words[2]} whispers with ${words[3]}, \nthey wander through endless time.`,
+                `${words[0]} walks alongside ${words[1]}, \n${words[2]} whispers with ${words[3]}, \nthey wander through endless time.`,
+                `${words[0]} falls into the arms of ${words[1]}, \n${words[2]} is the wind, \nand ${words[3]} is the distant starlight.`,
+                `In search of ${words[0]} through ${words[1]}, \nonly the shadows of ${words[2]} and ${words[3]} remain.`,
+                `${words[0]} walks with ${words[1]}, \nwhile ${words[2]} and ${words[3]} whisper to each other.`,
+                `${words[0]} follows the footsteps of ${words[1]}, \nwhile ${words[2]} and ${words[3]} fade into the distance.`,
+                `${words[0]} and ${words[1]} \ntraverse the dreamscape of ${words[2]} and ${words[3]}.`,
+                `${words[0]} is in the eyes of ${words[1]}, \nwhile ${words[2]} and ${words[3]} meet in the wind.`,
+                `${words[0]} and ${words[1]} meet at dawn, \nwhile ${words[2]} and ${words[3]} vanish into the night.`,
+                `${words[0]} and ${words[1]} are the past, \nwhile ${words[2]} and ${words[3]} are the future.`,
+                `${words[0]} is the shadow of ${words[1]}, \nwhile ${words[2]} is the reflection of ${words[3]}.`,
+                `${words[0]} walks alongside ${words[1]}, \nwhile ${words[2]} and ${words[3]} follow from afar.`
+            ]
+        }
+    };
+
+    let poem = '';
+
+   
+    for (let i = 0; i < paragraphCount; i++) {
+        const selectedTemplates = templates[language][words.length];
+        const randomIndex = Math.floor(Math.random() * selectedTemplates.length);
+        let generatedPoem = selectedTemplates[randomIndex];
+
+       
+        words.forEach(word => {
+            const boldWord = `<strong>${word}</strong>`;
+            generatedPoem = generatedPoem.replace(word, boldWord);
+        });
+
+        poem += generatedPoem + '\n\n';
+    }
+
+    
+    document.getElementById('poem').innerHTML = poem.trim();
+}
+
+
+
+
+function saveAsText() {
+    const poemContent = document.getElementById('poem').innerText; 
+    if (!poemContent) {
+        alert(currentLanguage === 'zh' ? '请先生成诗句！' : 'Please generate a poem first!');
+        return;
+    }
+
+    const blob = new Blob([poemContent], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'poem.txt'; 
+    link.click();
+}
+
+function saveAsImage() {
+    const poemElement = document.getElementById('poem');
+    if (!poemElement.innerHTML.trim()) {
+        alert(currentLanguage === 'zh' ? '请先生成诗句！' : 'Please generate a poem first!');
+        return;
+    }
+
+    html2canvas(poemElement).then(canvas => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'poem.png'; 
+        link.click();
+    });
+}
+

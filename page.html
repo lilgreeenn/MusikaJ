@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyrics Segmentation and Word Frequency Statistics</title>
+    <link rel="stylesheet" href="page.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="retro-window">
+        <h1 class="window-title">Lyrics Segmentation and Word Frequency Statistics</h1>
+
+   
+        <div class="input-section">
+            <input type="text" id="songTitle" placeholder="Please enter a song title" />
+            <input type="text" id="artistName" placeholder="Please enter the singer's name" />
+            <textarea id="lyricsInput" placeholder="Enter lyrics"></textarea>
+            <input type="file" id="albumCover"  placeholder="Album cover">
+            <input type="number" id="listenCount" placeholder="Enter the number of times you have listened to the song" min="0">
+            <button onclick="addSong()">Add Lyrics</button>
+            
+        </div>
+
+        <a href="example.json" download="example.json">
+            <button>Data Example (For download)</button>
+        </a>
+        
+
+        <div class="song-list-section">
+            <h2>Added Songs</h2>
+            <div class="action-buttons">
+                <button onclick="selectAllSongs()">Select all</button>
+                <button onclick="unselectAllSongs()">Cancel all</button>
+                <button onclick="sortByListenCount()">Sort by number of listens</button>
+            </div>
+            <button onclick="exportData()">Export data</button>
+            <input type="file" id="importFile" onchange="importData(event)" accept=".json">
+            <div id="songList" class="song-list"></div>
+          
+            <button onclick="goToArtistsPage()">Summarize all high-frequency words</button>
+            <button onclick="generateReport()"> Reports </button>
+        </div>
+
+        <div class="result-section">
+            <h2>Word frequency results</h2>
+            <div id="result"></div>
+            <canvas id="frequencyChart"></canvas>
+        </div>
+
+        <h2>Listening statistics</h2>
+        <canvas id="listenCountChart"></canvas>
+    </div>
+
+    <div id="lyricsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalCover" class="modal-cover" src="" alt="封面" />
+            <h2 id="modalTitle">Lyric</h2>
+            <pre id="modalLyrics"></pre>
+            <!-- <button onclick="downloadLyrics()">下载歌词和封面</button> -->
+        </div>
+    </div>
+
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeReportModal()">&times;</span>
+            <h2>Result</h2>
+            <div id="reportContent"></div>
+            <button onclick="downloadReport()">Download Result</button>
+        </div>
+    </div>
+
+     <div id="wordOccurrenceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeWordOccurrenceModal()">&times;</span>
+            <h2 id="wordOccurrenceTitle">Statistics</h2>
+            <div id="wordOccurrenceResult"></div>
+        </div>
+    </div>
+    <a href="nextpage.html">
+        <img src="未命名作品 12.png" id="corner-img" alt="Next Page">
+    </a>
+    
+
+    <script>
+        document.addEventListener("click", function() {
+            document.getElementById("button-sound").play();
+        });
+        
+        </script>
+
+
+
+    <script src="page.js"></script>
+</body>
+</html>

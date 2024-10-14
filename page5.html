@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ElectronicCore</title>
+  <link rel="stylesheet" href="wpage5.css">
+</head>
+<body>
+  <div class="container">
+    <h1>ElectronicCore</h1>
+
+    <div class="modulation">
+      <h3>Modulation Options</h3>
+      <div class="modulation-controls">
+        <div class="mod-control">
+          <label for="filterFreq">Filter Frequency:</label>
+          <input type="range" id="filterFreq" min="100" max="2000" value="800">
+          <span id="filterFreqDisplay">800 Hz</span>
+        </div>
+
+        <div class="mod-control">
+          <label for="distortion">Distortion:</label>
+          <input type="range" id="distortion" min="0" max="2" step="0.1" value="1">
+          <span id="distortionDisplay">1</span>
+        </div>
+
+        <div class="mod-control">
+          <label for="reverb">Reverb:</label>
+          <input type="range" id="reverb" min="0" max="5" step="0.5" value="3">
+          <span id="reverbDisplay">3 s</span>
+        </div>
+      </div>
+    </div>
+
+    <button id="generateButton" class="btn">Generate Random Music</button>
+    <button id="stopButton" class="btn">Stop Music</button>
+    <button id="recordButton" class="btn">Start Recording</button>
+
+    <p id="status"></p>
+    <canvas id="visualizer"></canvas>
+  </div>
+
+
+  <a href="nextpage.html">
+    <img src="未命名作品 10.png" id="cornerimg" alt="Next Page">
+</a>
+<!-- <audio id="button-sound" src="button-3.mp3"></audio> -->
+
+<script>
+document.addEventListener("click", function() {
+    document.getElementById("button-sound").play();
+});
+
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.0/lame.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.29/Tone.min.js"></script>
+  <script src="xpage5.js"></script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+* {
+    cursor: url('鼠标.png') 16 16, auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    cursor: url('鼠标.png') 16 16, auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: larger;
+    background: #0000FF;
+    padding: 20px;
+    color: #0400ff;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.timeline-container {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: url('鼠标.png') 16 16, auto;
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    background: #FFC300;
+    border-radius: 10px;
+    padding: 20px;
+    border: 6px solid #000; 
+}
+
+.timeline {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: url('鼠标.png') 16 16, auto;
+    position: absolute;
+    left: 50%;
+    width: 8px;
+    background-color: #333;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.timeline-content-left {
+    position: relative; 
+    top: 20px;
+    width: 45%; 
+   
+    overflow-y: visible;
+    max-height: none;
+}
+
+
+.timeline-item {
+    cursor: url('鼠标.png') 16 16, auto;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    position: relative;
+}
+
+
+
+
+.timeline {
+    cursor: url('鼠标.png') 16 16, auto;
+    position: absolute;
+    left: 50%;
+    width: 8px;
+    background-color: #333;
+    top: 0;
+    bottom: 0;
+}
+.timeline-year {
+    cursor: url('鼠标.png') 16 16, auto;
+    position: relative;
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 200px; 
+    text-align: center;
+    margin: 50px 0 20px 0; 
+    font-size: 36px;
+    font-weight: bold;
+    background-color: #ffe6e6;
+    color: #333;
+    padding: 10px 20px; 
+    border-radius: 10px;
+    border: 3px solid #333;
+    
+
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3), 0px 4px 6px rgba(0, 0, 0, 0.1);
+    
+    z-index: 10;
+}
+
+
+.timeline-item {
+    cursor: url('鼠标.png') 16 16, auto;
+    display: flex;
+    justify-content: space-between;
+    margin: 60px 0; 
+   
+    z-index: 1; 
+}
+
+
+.timeline-content-left, .timeline-content-right {
+    cursor: url('鼠标.png') 16 16, auto;
+    width: 45%;
+ 
+}
+
+.timeline-content-left h3 {
+    cursor: url('鼠标.png') 16 16, auto;
+    font-size: 28px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bold;
+    color: #FF0000;
+}
+
+.timeline-content-left p {
+    cursor: url('鼠标.png') 16 16, auto;
+    font-size: 22px;
+    color: #555;
+}
+
+.timeline-item .live-photo {
+    cursor: url('鼠标.png') 16 16, auto;
+    width: 80% ;
+    height: auto ;
+    left: 400px;
+    border: 6px solid #000;
+}
+
+.timeline-item img, .timeline-item video {
+    cursor: url('鼠标.png') 16 16, auto;
+    max-width: 100%;
+    display: block;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 6px solid #000;
+}
+
+.timeline-item .event-date {
+    cursor: url('鼠标.png') 16 16, auto;
+    font-size: 20px; 
+    color: white; 
+    text-align: left;
+    margin-bottom: 10px; 
+    font-weight: bold;
+}
+
+.timeline-item .band-photo {
+    cursor: url('鼠标.png') 16 16, auto;
+    width: 400px;
+    height: 400px; 
+    object-fit: cover; 
+    border: 6px solid #000; 
+    margin-bottom: 50px;
+}
+
+.upload-section {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: url('鼠标.png') 16 16, auto;
+    width: 70%;
+    margin: 20px auto;
+    background: #93ff6f;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 6px solid #000;
+}
+
+form {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: url('鼠标.png') 16 16, auto;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: url('鼠标.png') 16 16, auto;
+    margin-bottom: 5px;
+    font-weight: bold;
+    border: 6px solid #000;
+}
+
+input, textarea {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: url('鼠标.png') 16 16, auto;
+    margin-bottom: 15px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    border: 6px solid #000;
+}
+
+button {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: url('鼠标.png') 16 16, auto;
+    padding: 10px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 6px solid #000;
+}
+
+button:hover {
+    cursor: url('鼠标.png') 16 16, auto;
+    background-color: #ff4757;
+    border: 6px solid #000;
+}
+
+
+
+#corner-img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 270px; 
+    height: 270px;
+    z-index: 1000; 
+    cursor: url('鼠标.png') 16 16, auto;
+}
